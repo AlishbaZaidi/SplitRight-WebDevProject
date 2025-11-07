@@ -48,7 +48,7 @@ body {
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .btn-logout:hover {
@@ -150,7 +150,7 @@ body {
     cursor: pointer;
     font-weight: 600;
     transition: transform 0.2s;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .btn-primary:hover {
@@ -232,7 +232,7 @@ body {
     cursor: pointer;
     flex: 1;
     transition: background 0.3s;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .btn-secondary:hover {
@@ -248,7 +248,7 @@ body {
     cursor: pointer;
     flex: 1;
     transition: all 0.3s;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .btn-outline:hover {
