@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e6e6fa 0%, #fff0f5 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    max-width: 900px;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(26, 42, 126, 0.2);
+    overflow: hidden;
+}
+
+.logo-section {
+    flex: 1;
+    background: linear-gradient(135deg, #1a2a7e 0%, #2d3b99 100%);
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.logo-section p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.form-container {
+    flex: 1;
+    padding: 40px;
+    position: relative;
+}
+
+.form-wrapper {
+    display: none;
+    flex-direction: column;
+}
+
+.form-wrapper.active {
+    display: flex;
+}
+
+.form-wrapper h2 {
+    margin-bottom: 30px;
+    color: #1a2a7e;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.input-group input:focus {
+    border-color: #1a2a7e;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 42, 126, 0.2);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #1a2a7e 0%, #2d3b99 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 42, 126, 0.4);
+}
+
+.switch-form {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.switch-form a {
+    color: #1a2a7e;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.switch-form a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .logo-section {
+        padding: 30px 20px;
+    }
+    
+    .form-container {
+        padding: 30px 20px;
+    }
+}

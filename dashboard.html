@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitRight - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>SplitRight</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-name">Welcome, Alishba!</span>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Balance Overview -->
+            <section class="balance-section">
+                <h2>Your Balance Overview</h2>
+                <div class="balance-cards">
+                    <div class="balance-card owed-to-you">
+                        <h3>You Are Owed</h3>
+                        <p class="amount positive">+$125.50</p>
+                    </div>
+                    <div class="balance-card you-owe">
+                        <h3>You Owe</h3>
+                        <p class="amount negative">-$45.00</p>
+                    </div>
+                    <div class="balance-card net-balance">
+                        <h3>Net Balance</h3>
+                        <p class="amount positive">+$80.50</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Your Groups -->
+            <section class="groups-section">
+                <div class="section-header">
+                    <h2>Your Groups</h2>
+                    <button class="btn-primary" id="create-group-btn">+ Create Group</button>
+                </div>
+                
+                <div class="groups-grid">
+                    <!-- Group 1 -->
+                    <div class="group-card">
+                        <div class="group-header">
+                            <h3>Roommates</h3>
+                            <span class="member-count">4 members</span>
+                        </div>
+                        <div class="group-balance">
+                            <span class="balance-text">You are owed: <strong class="positive">$85.00</strong></span>
+                        </div>
+                        <div class="group-actions">
+                            <button class="btn-secondary">View Details</button>
+                            <button class="btn-outline">Add Expense</button>
+                        </div>
+                    </div>
+
+                    <!-- Group 2 -->
+                    <div class="group-card">
+                        <div class="group-header">
+                            <h3>Vacation Trip</h3>
+                            <span class="member-count">6 members</span>
+                        </div>
+                        <div class="group-balance">
+                            <span class="balance-text">You owe: <strong class="negative">$25.00</strong></span>
+                        </div>
+                        <div class="group-actions">
+                            <button class="btn-secondary">View Details</button>
+                            <button class="btn-outline">Add Expense</button>
+                        </div>
+                    </div>
+
+                    <!-- Group 3 -->
+                    <div class="group-card">
+                        <div class="group-header">
+                            <h3>Family Expenses</h3>
+                            <span class="member-count">3 members</span>
+                        </div>
+                        <div class="group-balance">
+                            <span class="balance-text">You are owed: <strong class="positive">$40.50</strong></span>
+                        </div>
+                        <div class="group-actions">
+                            <button class="btn-secondary">View Details</button>
+                            <button class="btn-outline">Add Expense</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <h2>Recent Activity</h2>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon expense-added">💸</div>
+                        <div class="activity-details">
+                            <p><strong>You</strong> added expense "Groceries" in <strong>Roommates</strong></p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                        <div class="activity-amount">$60.00</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon payment">✅</div>
+                        <div class="activity-details">
+                            <p><strong>Huzaifa</strong> settled up in <strong>Vacation Trip</strong></p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                        <div class="activity-amount positive">+$30.00</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon expense-added">💸</div>
+                        <div class="activity-details">
+                            <p><strong>Alishba</strong> added expense "Dinner" in <strong>Family Expenses</strong></p>
+                            <span class="activity-time">2 days ago</span>
+                        </div>
+                        <div class="activity-amount">$75.00</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Simple logout functionality
+        document.querySelector('.btn-logout').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Create group button
+        document.getElementById('create-group-btn').addEventListener('click', function() {
+            alert('Create group functionality will be added later');
+        });
+
+        // Group action buttons
+        document.querySelectorAll('.btn-secondary').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Group details will be shown here');
+            });
+        });
+
+        document.querySelectorAll('.btn-outline').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Add expense form will open here');
+            });
+        });
+    </script>
+</body>
+</html>
