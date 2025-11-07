@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitRight - Settle Up</title>
+    <link rel="stylesheet" href="settle-up.css">
+</head>
+<body>
+    <div class="settle-up-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="btn-back" onclick="window.location.href='group-details.html'">← Back</button>
+                <h1>SplitRight</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-name">Alishba</span>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <!-- Settle Up Content -->
+        <main class="main-content">
+            <div class="settle-up-card">
+                <h2>Settle Up</h2>
+                <p class="subtitle">Roommates group</p>
+
+                <!-- Settlement Summary -->
+                <div class="settlement-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">You owe to Huzaifa:</span>
+                        <span class="summary-amount negative">$45.00</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span class="summary-label">Total to settle:</span>
+                        <span class="summary-amount negative">$45.00</span>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="form-section">
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" value="cash" checked>
+                            <span class="payment-icon">💵</span>
+                            <span class="payment-label">Cash</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" value="bank">
+                            <span class="payment-icon">🏦</span>
+                            <span class="payment-label">Bank Transfer</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" value="easypaisa">
+                            <span class="payment-icon">📱</span>
+                            <span class="payment-label">EasyPaisa</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" value="other">
+                            <span class="payment-icon">🔗</span>
+                            <span class="payment-label">Other</span>
+                        </label>
+                    </div>
+
+                    <!-- Additional Details -->
+                    <div class="form-group">
+                        <label for="payment-notes">Payment Notes (Optional)</label>
+                        <textarea id="payment-notes" placeholder="Add any payment reference or notes..." rows="3"></textarea>
+                    </div>
+
+                    <!-- Settlement Date -->
+                    <div class="form-group">
+                        <label for="settlement-date">Settlement Date</label>
+                        <input type="date" id="settlement-date" required>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn-cancel" onclick="window.location.href='group-details.html'">Cancel</button>
+                    <button class="btn-settle" id="settle-btn">Mark as Settled</button>
+                </div>
+            </div>
+
+            <!-- Recent Settlements -->
+            <div class="recent-settlements">
+                <h3>Recent Settlements</h3>
+                <div class="settlements-list">
+                    <div class="settlement-item">
+                        <div class="settlement-icon">✅</div>
+                        <div class="settlement-details">
+                            <p><strong>Sarah</strong> settled with <strong>Huzaifa</strong></p>
+                            <span class="settlement-time">2 days ago • Cash</span>
+                        </div>
+                        <div class="settlement-amount">$30.00</div>
+                    </div>
+                    <div class="settlement-item">
+                        <div class="settlement-icon">✅</div>
+                        <div class="settlement-details">
+                            <p><strong>Ali</strong> settled with <strong>Alishba</strong></p>
+                            <span class="settlement-time">1 week ago • Bank Transfer</span>
+                        </div>
+                        <div class="settlement-amount">$25.00</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('settlement-date').valueAsDate = new Date();
+
+        // Settle button functionality
+        document.getElementById('settle-btn').addEventListener('click', function() {
+            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+            const notes = document.getElementById('payment-notes').value;
+            
+            if (confirm('Are you sure you want to mark this payment as settled?')) {
+                alert(`Payment marked as settled!\n\nMethod: ${paymentMethod}\nNotes: ${notes || 'None'}`);
+                window.location.href = 'group-details.html';
+            }
+        });
+
+        // Logout functionality
+        document.querySelector('.btn-logout').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
