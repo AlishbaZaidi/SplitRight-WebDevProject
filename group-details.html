@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitRight - Roommates Group</title>
+    <link rel="stylesheet" href="group-details.css">
+</head>
+<body>
+    <div class="group-details-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="btn-back" onclick="window.location.href='dashboard.html'">← Back</button>
+                <h1>SplitRight</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-name">Alishba</span>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <!-- Group Header -->
+        <section class="group-header">
+            <div class="group-info">
+                <h2>Roommates</h2>
+                <p class="group-members">4 members • Created 2 weeks ago</p>
+            </div>
+            <button class="btn-primary" id="add-expense-btn">+ Add Expense</button>
+        </section>
+
+        <!-- Balance Summary -->
+        <section class="balance-summary">
+            <div class="balance-card">
+                <h3>Group Balance</h3>
+                <p class="balance-amount positive">You are owed: <strong>$85.00</strong></p>
+            </div>
+        </section>
+
+        <!-- Members and Balances -->
+        <section class="members-section">
+            <h3>Members & Balances</h3>
+            <div class="members-list">
+                <div class="member-item">
+                    <div class="member-info">
+                        <span class="member-name">Alishba</span>
+                        <span class="member-you">(You)</span>
+                    </div>
+                    <span class="member-balance positive">+$85.00</span>
+                </div>
+                <div class="member-item">
+                    <div class="member-info">
+                        <span class="member-name">Huzaifa</span>
+                    </div>
+                    <span class="member-balance negative">-$45.00</span>
+                </div>
+                <div class="member-item">
+                    <div class="member-info">
+                        <span class="member-name">Sarah</span>
+                    </div>
+                    <span class="member-balance negative">-$25.00</span>
+                </div>
+                <div class="member-item">
+                    <div class="member-info">
+                        <span class="member-name">Ali</span>
+                    </div>
+                    <span class="member-balance negative">-$15.00</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expenses List -->
+        <section class="expenses-section">
+            <div class="section-header">
+                <h3>Expenses</h3>
+                <div class="filter-options">
+                    <select class="filter-select">
+                        <option>All Expenses</option>
+                        <option>Your Expenses</option>
+                        <option>Last 7 days</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="expenses-list">
+                <!-- Expense 1 -->
+                <div class="expense-item">
+                    <div class="expense-icon">🛒</div>
+                    <div class="expense-details">
+                        <h4>Groceries</h4>
+                        <p>Added by <strong>Alishba</strong> • 2 days ago</p>
+                        <div class="expense-members">
+                            <span class="split-info">Split equally between 4 people</span>
+                        </div>
+                    </div>
+                    <div class="expense-amount">
+                        <span class="amount">$60.00</span>
+                        <span class="you-paid">You paid</span>
+                    </div>
+                </div>
+
+                <!-- Expense 2 -->
+                <div class="expense-item">
+                    <div class="expense-icon">⚡</div>
+                    <div class="expense-details">
+                        <h4>Electricity Bill</h4>
+                        <p>Added by <strong>Huzaifa</strong> • 1 week ago</p>
+                        <div class="expense-members">
+                            <span class="split-info">Split equally between 4 people</span>
+                        </div>
+                    </div>
+                    <div class="expense-amount">
+                        <span class="amount">$40.00</span>
+                        <span class="you-owe">You owe $10.00</span>
+                    </div>
+                </div>
+
+                <!-- Expense 3 -->
+                <div class="expense-item">
+                    <div class="expense-icon">🍕</div>
+                    <div class="expense-details">
+                        <h4>Pizza Night</h4>
+                        <p>Added by <strong>Sarah</strong> • 2 weeks ago</p>
+                        <div class="expense-members">
+                            <span class="split-info">Split equally between 4 people</span>
+                        </div>
+                    </div>
+                    <div class="expense-amount">
+                        <span class="amount">$32.00</span>
+                        <span class="you-owe">You owe $8.00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Add Expense button
+        document.getElementById('add-expense-btn').addEventListener('click', function() {
+            alert('Add expense form will open here');
+        });
+
+        // Logout functionality
+        document.querySelector('.btn-logout').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
