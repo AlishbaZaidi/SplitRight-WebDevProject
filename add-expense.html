@@ -117,8 +117,8 @@
 
                     <!-- Form Actions -->
                     <div class="form-actions">
-                        <button type="button" class="btn-cancel" onclick="window.location.href='group-details.html'">Cancel</button>
-                        <button type="submit" class="btn-submit">Add Expense</button>
+                        <button type="button" class="btn-secondary" id="cancel-btn">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Expense</button>
                     </div>
                 </form>
             </div>
@@ -161,6 +161,13 @@
             
             // Redirect back to group details
             window.location.href = 'group-details.html';
+        });
+
+        // Cancel button functionality
+        document.getElementById('cancel-btn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
+                window.location.href = 'group-details.html';
+            }
         });
 
         // Logout functionality
