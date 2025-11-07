@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitRight - Create Group</title>
+    <link rel="stylesheet" href="create-group.css">
+</head>
+<body>
+    <div class="create-group-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="btn-back" onclick="window.location.href='dashboard.html'">← Back</button>
+                <h1>SplitRight</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-name">Alishba</span>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <!-- Create Group Form -->
+        <main class="main-content">
+            <div class="form-section">
+                <h2>Create New Group</h2>
+                <p class="subtitle">Start tracking shared expenses with your friends</p>
+
+                <form id="createGroupForm">
+                    <!-- Group Name -->
+                    <div class="form-group">
+                        <label for="group-name">Group Name</label>
+                        <input type="text" id="group-name" placeholder="e.g., Roommates, Vacation Trip, Family" required>
+                    </div>
+
+                    <!-- Group Description -->
+                    <div class="form-group">
+                        <label for="group-description">Description (Optional)</label>
+                        <textarea id="group-description" placeholder="What's this group for?" rows="3"></textarea>
+                    </div>
+
+                    <!-- Currency -->
+                    <div class="form-group">
+                        <label for="group-currency">Currency</label>
+                        <select id="group-currency" required>
+                            <option value="USD">US Dollar ($)</option>
+                            <option value="PKR">Pakistani Rupee (₨)</option>
+                            <option value="EUR">Euro (€)</option>
+                            <option value="GBP">British Pound (£)</option>
+                        </select>
+                    </div>
+
+                    <!-- Add Members -->
+                    <div class="form-group">
+                        <label>Add Members</label>
+                        <div class="members-input-section">
+                            <div class="member-input-row">
+                                <input type="email" class="member-email" placeholder="Enter email address">
+                                <button type="button" class="btn-add-member">+ Add</button>
+                            </div>
+                            <div class="members-list" id="members-list">
+                                <!-- Added members will appear here -->
+                                <div class="added-member">
+                                    <span>alishba@example.com</span>
+                                    <button type="button" class="btn-remove-member">×</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group Color -->
+                    <div class="form-group">
+                        <label>Group Color Theme</label>
+                        <div class="color-options">
+                            <label class="color-option">
+                                <input type="radio" name="group-color" value="blue" checked>
+                                <span class="color-dot blue"></span>
+                                <span class="color-label">Blue</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="group-color" value="purple">
+                                <span class="color-dot purple"></span>
+                                <span class="color-label">Purple</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="group-color" value="green">
+                                <span class="color-dot green"></span>
+                                <span class="color-label">Green</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="group-color" value="orange">
+                                <span class="color-dot orange"></span>
+                                <span class="color-label">Orange</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="window.location.href='dashboard.html'">Cancel</button>
+                        <button type="submit" class="btn-submit">Create Group</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Add member functionality
+        document.querySelector('.btn-add-member').addEventListener('click', function() {
+            const emailInput = document.querySelector('.member-email');
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                alert('Please enter an email address');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Add member to list
+            const membersList = document.getElementById('members-list');
+            const memberElement = document.createElement('div');
+            memberElement.className = 'added-member';
+            memberElement.innerHTML = `
+                <span>${email}</span>
+                <button type="button" class="btn-remove-member">×</button>
+            `;
+            
+            membersList.appendChild(memberElement);
+            emailInput.value = '';
+
+            // Add remove functionality
+            memberElement.querySelector('.btn-remove-member').addEventListener('click', function() {
+                membersList.removeChild(memberElement);
+            });
+        });
+
+        // Email validation
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Form submission
+        document.getElementById('createGroupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const groupName = document.getElementById('group-name').value;
+            const currency = document.getElementById('group-currency').value;
+            const members = document.querySelectorAll('.added-member');
+            
+            if (!groupName) {
+                alert('Please enter a group name');
+                return;
+            }
+
+            if (members.length === 0) {
+                alert('Please add at least one member to the group');
+                return;
+            }
+
+            alert(`Group "${groupName}" created successfully!\n\nMembers: ${members.length + 1} (including you)\nCurrency: ${currency}`);
+            
+            // Redirect back to dashboard
+            window.location.href = 'dashboard.html';
+        });
+
+        // Logout functionality
+        document.querySelector('.btn-logout').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
