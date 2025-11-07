@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitRight - Add Expense</title>
+    <link rel="stylesheet" href="add-expense.css">
+</head>
+<body>
+    <div class="add-expense-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="btn-back" onclick="window.location.href='group-details.html'">← Back</button>
+                <h1>SplitRight</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-name">Alishba</span>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <!-- Add Expense Form -->
+        <main class="main-content">
+            <div class="form-section">
+                <h2>Add New Expense</h2>
+                <p class="subtitle">Roommates group</p>
+
+                <form id="addExpenseForm">
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label for="expense-description">Description</label>
+                        <input type="text" id="expense-description" placeholder="What was this expense for?" required>
+                    </div>
+
+                    <!-- Amount -->
+                    <div class="form-group">
+                        <label for="expense-amount">Amount</label>
+                        <div class="amount-input">
+                            <span class="currency">$</span>
+                            <input type="number" id="expense-amount" placeholder="0.00" step="0.01" min="0" required>
+                        </div>
+                    </div>
+
+                    <!-- Paid By -->
+                    <div class="form-group">
+                        <label for="paid-by">Paid by</label>
+                        <select id="paid-by" required>
+                            <option value="Alishba">Alishba (You)</option>
+                            <option value="Huzaifa">Huzaifa</option>
+                            <option value="Sarah">Sarah</option>
+                            <option value="Ali">Ali</option>
+                        </select>
+                    </div>
+
+                    <!-- Split Type -->
+                    <div class="form-group">
+                        <label>Split between</label>
+                        <div class="split-options">
+                            <label class="radio-option">
+                                <input type="radio" name="split-type" value="equal" checked>
+                                <span class="radio-label">Split equally</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="split-type" value="custom">
+                                <span class="radio-label">Custom amounts</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Members Selection (Custom Split) -->
+                    <div class="form-group custom-split-section" id="custom-split-section" style="display: none;">
+                        <label>Custom Amounts</label>
+                        <div class="members-split-list">
+                            <div class="member-split-item">
+                                <span class="member-name">Alishba (You)</span>
+                                <div class="amount-input small">
+                                    <span class="currency">$</span>
+                                    <input type="number" class="custom-amount" placeholder="0.00" step="0.01" min="0">
+                                </div>
+                            </div>
+                            <div class="member-split-item">
+                                <span class="member-name">Huzaifa</span>
+                                <div class="amount-input small">
+                                    <span class="currency">$</span>
+                                    <input type="number" class="custom-amount" placeholder="0.00" step="0.01" min="0">
+                                </div>
+                            </div>
+                            <div class="member-split-item">
+                                <span class="member-name">Sarah</span>
+                                <div class="amount-input small">
+                                    <span class="currency">$</span>
+                                    <input type="number" class="custom-amount" placeholder="0.00" step="0.01" min="0">
+                                </div>
+                            </div>
+                            <div class="member-split-item">
+                                <span class="member-name">Ali</span>
+                                <div class="amount-input small">
+                                    <span class="currency">$</span>
+                                    <input type="number" class="custom-amount" placeholder="0.00" step="0.01" min="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="form-group">
+                        <label for="expense-date">Date</label>
+                        <input type="date" id="expense-date" required>
+                    </div>
+
+                    <!-- Notes (Optional) -->
+                    <div class="form-group">
+                        <label for="expense-notes">Notes (Optional)</label>
+                        <textarea id="expense-notes" placeholder="Add any additional notes..." rows="3"></textarea>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="window.location.href='group-details.html'">Cancel</button>
+                        <button type="submit" class="btn-submit">Add Expense</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('expense-date').valueAsDate = new Date();
+
+        // Toggle custom split section
+        const splitRadios = document.querySelectorAll('input[name="split-type"]');
+        const customSplitSection = document.getElementById('custom-split-section');
+
+        splitRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'custom') {
+                    customSplitSection.style.display = 'block';
+                } else {
+                    customSplitSection.style.display = 'none';
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('addExpenseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const description = document.getElementById('expense-description').value;
+            const amount = document.getElementById('expense-amount').value;
+            const paidBy = document.getElementById('paid-by').value;
+            const splitType = document.querySelector('input[name="split-type"]:checked').value;
+            
+            if (!description || !amount) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            alert(`Expense added successfully!\n\nDescription: ${description}\nAmount: $${amount}\nPaid by: ${paidBy}\nSplit: ${splitType}`);
+            
+            // Redirect back to group details
+            window.location.href = 'group-details.html';
+        });
+
+        // Logout functionality
+        document.querySelector('.btn-logout').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
