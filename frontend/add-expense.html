@@ -37,8 +37,8 @@
                     <div class="form-group">
                         <label for="expense-amount">Amount</label>
                         <div class="amount-input">
-                            <span class="currency">$</span>
-                            <input type="number" id="expense-amount" placeholder="0.00" step="0.01" min="0" required>
+                            <span class="currency">Rs</span>
+                            <input type="number" id="expense-amount" placeholder="0" step="1" min="0" required>
                         </div>
                     </div>
 
@@ -75,29 +75,29 @@
                             <div class="member-split-item">
                                 <span class="member-name">Alishba (You)</span>
                                 <div class="amount-input small">
-                                    <span class="currency">$</span>
-                                    <input type="number" class="custom-amount" placeholder="0.00" step="0.01" min="0">
+                                    <span class="currency">Rs</span>
+                                    <input type="number" class="custom-amount" placeholder="0" step="1" min="0">
                                 </div>
                             </div>
                             <div class="member-split-item">
                                 <span class="member-name">Huzaifa</span>
                                 <div class="amount-input small">
-                                    <span class="currency">$</span>
-                                    <input type="number" class="custom-amount" placeholder="0.00" step="0.01" min="0">
+                                    <span class="currency">Rs</span>
+                                    <input type="number" class="custom-amount" placeholder="0" step="1" min="0">
                                 </div>
                             </div>
                             <div class="member-split-item">
                                 <span class="member-name">Sarah</span>
                                 <div class="amount-input small">
-                                    <span class="currency">$</span>
-                                    <input type="number" class="custom-amount" placeholder="0.00" step="0.01" min="0">
+                                    <span class="currency">Rs</span>
+                                    <input type="number" class="custom-amount" placeholder="0" step="1" min="0">
                                 </div>
                             </div>
                             <div class="member-split-item">
                                 <span class="member-name">Ali</span>
                                 <div class="amount-input small">
-                                    <span class="currency">$</span>
-                                    <input type="number" class="custom-amount" placeholder="0.00" step="0.01" min="0">
+                                    <span class="currency">Rs</span>
+                                    <input type="number" class="custom-amount" placeholder="0" step="1" min="0">
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                 return;
             }
 
-            alert(`Expense added successfully!\n\nDescription: ${description}\nAmount: $${amount}\nPaid by: ${paidBy}\nSplit: ${splitType}`);
+            alert(`Expense added successfully!\n\nDescription: ${description}\nAmount: Rs ${amount}\nPaid by: ${paidBy}\nSplit: ${splitType}`);
             
             // Redirect back to group details
             window.location.href = 'group-details.html';
