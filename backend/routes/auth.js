@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
@@ -19,13 +18,13 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({ error: 'User already exists with this email' });
         }
 
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
+        // Store plain text password for development (NOT for production!)
+        const plainPassword = password;
 
         // Insert new user
         const [result] = await db.promise().execute(
             'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-            [name, email, hashedPassword]
+            [name, email, plainPassword]
         );
 
         // Generate JWT token
@@ -69,9 +68,8 @@ router.post('/login', async (req, res) => {
 
         const user = users[0];
 
-        // Check password
-        const validPassword = await bcrypt.compare(password, user.password);
-        if (!validPassword) {
+        // Check password (plain text comparison for development)
+        if (password !== user.password) {
             return res.status(400).json({ error: 'Invalid email or password' });
         }
 

@@ -130,31 +130,6 @@
         </main>
     </div>
 
-    <script>
-        // Simple logout functionality
-        document.querySelector('.btn-logout').addEventListener('click', function() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = 'login.html';
-            }
-        });
-
-        // Create group button
-        document.getElementById('create-group-btn').addEventListener('click', function() {
-            alert('Create group functionality will be added later');
-        });
-
-        // Group action buttons
-        document.querySelectorAll('.btn-secondary').forEach(button => {
-            button.addEventListener('click', function() {
-                alert('Group details will be shown here');
-            });
-        });
-
-        document.querySelectorAll('.btn-outline').forEach(button => {
-            button.addEventListener('click', function() {
-                alert('Add expense form will open here');
-            });
-        });
-    </script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>

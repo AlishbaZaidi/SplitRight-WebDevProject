@@ -5,6 +5,21 @@ const authMiddleware = require('../middleware/auth');
 // Apply auth middleware to all dashboard routes
 router.use(authMiddleware);
 
+// Helper function to format time ago
+function formatTimeAgo(date) {
+    const now = new Date();
+    const diffMs = now - new Date(date);
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return `${diffMins} minutes ago`;
+    if (diffHours < 24) return `${diffHours} hours ago`;
+    if (diffDays === 1) return '1 day ago';
+    return `${diffDays} days ago`;
+}
+
 // Get dashboard summary data
 router.get('/summary', async (req, res) => {
     try {
@@ -29,15 +44,17 @@ router.get('/summary', async (req, res) => {
         };
 
         // Get user's groups
+        // Get user's groups - ALTERNATIVE FIX
         const [groups] = await db.promise().execute(`
             SELECT g.*, 
-                   COUNT(gm.user_id) as member_count,
-                   (SELECT SUM(es.amount) 
+                COUNT(DISTINCT gm_all.user_id) as member_count,
+                (SELECT SUM(es.amount) 
                     FROM expense_splits es 
                     JOIN expenses e ON es.expense_id = e.id 
                     WHERE e.group_id = g.id AND es.user_id = ?) as user_balance
             FROM groups g
             JOIN group_members gm ON g.id = gm.group_id
+            JOIN group_members gm_all ON g.id = gm_all.group_id
             WHERE gm.user_id = ?
             GROUP BY g.id
             ORDER BY g.created_at DESC
@@ -98,7 +115,7 @@ router.get('/summary', async (req, res) => {
             type: activity.type,
             description: activity.display_text,
             amount: activity.amount,
-            time: this.formatTimeAgo(activity.created_at)
+            time: formatTimeAgo(activity.created_at)
         }));
 
         res.json({
@@ -117,19 +134,5 @@ router.get('/summary', async (req, res) => {
     }
 });
 
-// Helper function to format time ago
-router.formatTimeAgo = (date) => {
-    const now = new Date();
-    const diffMs = now - new Date(date);
-    const diffMins = Math.floor(diffMs / 60000);
-    const diffHours = Math.floor(diffMins / 60);
-    const diffDays = Math.floor(diffHours / 24);
-
-    if (diffMins < 1) return 'Just now';
-    if (diffMins < 60) return `${diffMins} minutes ago`;
-    if (diffHours < 24) return `${diffHours} hours ago`;
-    if (diffDays === 1) return '1 day ago';
-    return `${diffDays} days ago`;
-};
 
 module.exports = router;

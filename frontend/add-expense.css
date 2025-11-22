@@ -157,14 +157,24 @@ body {
     padding-left: 2.5rem !important;
 }
 
+.amount-input.small {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 120px; /* Add fixed width */
+}
+
 .amount-input.small input {
-    padding: 0.5rem 0.75rem 0.5rem 1.5rem !important;
+    padding: 0.5rem 0.5rem 0.5rem 1.8rem !important; /* Reduced left padding */
     font-size: 0.9rem;
+    width: 100%;
 }
 
 .amount-input.small .currency {
-    left: 0.75rem;
+    position: absolute;
+    left: 0.5rem; /* Move closer to edge */
     font-size: 0.9rem;
+    z-index: 1;
 }
 
 /* Split Options */

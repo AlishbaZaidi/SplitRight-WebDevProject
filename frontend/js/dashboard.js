@@ -97,6 +97,11 @@ class Dashboard {
         this.updateBalanceCards();
         this.updateGroups();
         this.updateRecentActivity();
+        this.updatePageTitle();
+    }
+
+    updatePageTitle() {
+        document.title = `SplitRight - Dashboard`;
     }
 
     updateBalanceCards() {

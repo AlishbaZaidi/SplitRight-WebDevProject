@@ -24,7 +24,7 @@
         <main class="main-content">
             <div class="form-section">
                 <h2>Add New Expense</h2>
-                <p class="subtitle">Roommates group</p>
+                <p class="subtitle" id="group-subtitle">Loading group...</p>
 
                 <form id="addExpenseForm">
                     <!-- Description -->
@@ -125,57 +125,6 @@
         </main>
     </div>
 
-    <script>
-        // Set today's date as default
-        document.getElementById('expense-date').valueAsDate = new Date();
-
-        // Toggle custom split section
-        const splitRadios = document.querySelectorAll('input[name="split-type"]');
-        const customSplitSection = document.getElementById('custom-split-section');
-
-        splitRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                if (this.value === 'custom') {
-                    customSplitSection.style.display = 'block';
-                } else {
-                    customSplitSection.style.display = 'none';
-                }
-            });
-        });
-
-        // Form submission
-        document.getElementById('addExpenseForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const description = document.getElementById('expense-description').value;
-            const amount = document.getElementById('expense-amount').value;
-            const paidBy = document.getElementById('paid-by').value;
-            const splitType = document.querySelector('input[name="split-type"]:checked').value;
-            
-            if (!description || !amount) {
-                alert('Please fill in all required fields');
-                return;
-            }
-
-            alert(`Expense added successfully!\n\nDescription: ${description}\nAmount: Rs ${amount}\nPaid by: ${paidBy}\nSplit: ${splitType}`);
-            
-            // Redirect back to group details
-            window.location.href = 'group-details.html';
-        });
-
-        // Cancel button functionality
-        document.getElementById('cancel-btn').addEventListener('click', function() {
-            if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
-                window.location.href = 'group-details.html';
-            }
-        });
-
-        // Logout functionality
-        document.querySelector('.btn-logout').addEventListener('click', function() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = 'login.html';
-            }
-        });
-    </script>
+    <script src="js/add-expense.js"></script>
 </body>
 </html>
